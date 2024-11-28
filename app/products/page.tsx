@@ -1,5 +1,7 @@
 "use client";
-import { Box } from "@mui/material";
+
+import { Box, Button } from "@mui/material";
+import { AddCircle } from "@mui/icons-material";
 import {
   DataGrid,
   GridCallbackDetails,
@@ -10,12 +12,13 @@ import { useState } from "react";
 import CustomModal from "../components/modal";
 import Product from "../components/product";
 
-import { Items, ProductColumns } from "@/constant";
+import { EmptyProduct, Items, ProductColumns } from "@/constant";
 import { ProductProps } from "@/types";
 
 const Products = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [rowData, setRowData] = useState<ProductProps | null>(null);
+  const [edit, setEdit] = useState(false);
+  const [rowData, setRowData] = useState<ProductProps>(EmptyProduct);
 
   const paginationModel = { page: 0, pageSize: 10 };
   const columns = [...ProductColumns];
@@ -25,14 +28,20 @@ const Products = () => {
     event: MuiEvent<React.MouseEvent<HTMLElement>>,
     details: GridCallbackDetails
   ) => {
-    // console.log(params);
-    // console.log(details);
     setRowData(params.row);
     setOpenModal(true);
   };
 
   const handleModalClose = () => {
     setOpenModal(false);
+    setEdit(false);
+  };
+
+  // create new button
+  const handleCreateNew = () => {
+    setRowData(EmptyProduct);
+    setOpenModal(true);
+    setEdit(true);
   };
 
   return (
@@ -43,6 +52,20 @@ const Products = () => {
           padding: "2rem",
         }}
       >
+        <div className="flex flex-row-reverse">
+          <Button
+            variant="contained"
+            size="small"
+            className="bg-gray-900 hover:bg-gray-700"
+            onClick={handleCreateNew}
+          >
+            <AddCircle fontSize="small" className="m-1" />
+            Create New
+          </Button>
+        </div>
+        <p className="text-red-600 text-sm">
+          * Please click on row to view/edit product details
+        </p>
         <DataGrid
           rows={Items}
           columns={columns}
@@ -51,6 +74,7 @@ const Products = () => {
           sx={{ border: 0 }}
           rowHeight={30}
           onRowClick={handleRowClick}
+          disableRowSelectionOnClick
         />
       </Box>
 
@@ -59,7 +83,7 @@ const Products = () => {
         handleClose={handleModalClose}
         title={rowData?.name || ""}
       >
-        <Product prod={rowData} />
+        <Product prod={rowData} editDetails={edit} />
       </CustomModal>
     </>
   );
