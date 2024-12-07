@@ -10,8 +10,8 @@ import {
 } from "@mui/x-data-grid";
 import { useState } from "react";
 
-import CustomModal from "@/app/components/CustomModal";
-import Product from "@/app/components/Product";
+import CustomModal from "./CustomModal";
+import Product from "./Product";
 import { EmptyProduct, ProductColumns } from "@/constant";
 import { ProductProps } from "@/types";
 
@@ -27,10 +27,13 @@ const InventoryTable: React.FC<InventoryTableProps> = ({ Items }) => {
   const paginationModel = { page: 0, pageSize: 10 };
   const columns = [...ProductColumns];
 
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const handleRowClick = (
     params: GridRowParams,
-    event: MuiEvent<React.MouseEvent<HTMLElement>>,
-    details: GridCallbackDetails
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    _event: MuiEvent<React.MouseEvent<HTMLElement>>,
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    _details: GridCallbackDetails
   ) => {
     setRowData(params.row);
     setOpenModal(true);
@@ -82,11 +85,7 @@ const InventoryTable: React.FC<InventoryTableProps> = ({ Items }) => {
         />
       </Box>
 
-      <CustomModal
-        open={openModal}
-        handleClose={handleModalClose}
-        title={rowData?.name || ""}
-      >
+      <CustomModal open={openModal} handleClose={handleModalClose}>
         <Product prod={rowData} editDetails={edit} />
       </CustomModal>
     </>

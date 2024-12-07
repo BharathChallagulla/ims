@@ -1,14 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { Grid2 as Grid } from "@mui/material";
-import {
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  Button,
-  Paper,
-} from "@mui/material";
+import { Card, CardContent, Typography, Box, Button } from "@mui/material";
 import { Bar, Pie, getElementAtEvent } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -36,7 +29,9 @@ ChartJS.register(
 
 const Dashboard: React.FC<{ products: ProductProps[] }> = ({ products }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const barChartRef = useRef<any>(null);
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const pieChartRef = useRef<any>(null);
 
   // Calculate Stats
