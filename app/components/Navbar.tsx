@@ -6,7 +6,6 @@ const Navbar = () => {
   const menuItems = [
     { name: "Dashboard", link: "/" },
     { name: "Products", link: "/products" },
-    { name: "Orders", link: "/orders" },
   ];
   return (
     <div className="bg-black">
