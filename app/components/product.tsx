@@ -1,15 +1,8 @@
-import {
-  Paper,
-  Typography,
-  Box,
-  Grid2 as Grid,
-  Input,
-  Button,
-} from "@mui/material";
+import { Typography, Box, Grid2 as Grid, Input, Button } from "@mui/material";
 
 import { ProductProps } from "@/types";
-import { EmptyProduct, ProductDetails } from "@/constant";
-import { useEffect, useState } from "react";
+import { ProductDetails } from "@/constant";
+import { useState } from "react";
 
 const Product: React.FC<{ prod: ProductProps; editDetails: boolean }> = ({
   prod,
