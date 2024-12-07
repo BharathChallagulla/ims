@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button } from "@mui/material";
+import { Box, Button, Input } from "@mui/material";
 import { AddCircle } from "@mui/icons-material";
 import {
   DataGrid,
@@ -8,7 +8,7 @@ import {
   GridRowParams,
   MuiEvent,
 } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CustomModal from "./CustomModal";
 import Product from "./Product";
@@ -23,9 +23,15 @@ const InventoryTable: React.FC<InventoryTableProps> = ({ Items }) => {
   const [openModal, setOpenModal] = useState(false);
   const [edit, setEdit] = useState(false);
   const [rowData, setRowData] = useState<ProductProps>(EmptyProduct);
+  const [filteredProd, setFilteredProd] = useState<ProductProps[]>([...Items]);
+  const [searchValue, setSearchValue] = useState("");
 
   const paginationModel = { page: 0, pageSize: 10 };
   const columns = [...ProductColumns];
+
+  useEffect(() => {
+    handleSearch();
+  }, [searchValue]);
 
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   const handleRowClick = (
@@ -51,6 +57,15 @@ const InventoryTable: React.FC<InventoryTableProps> = ({ Items }) => {
     setEdit(true);
   };
 
+  // search Items with name
+  const handleSearch = () => {
+    const newFilteredProducts = filteredProd.filter((prod: ProductProps) => {
+      return prod.name.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    setFilteredProd(newFilteredProducts);
+    console.log("Bharath", newFilteredProducts);
+  };
+
   return (
     <>
       <Box
@@ -59,7 +74,16 @@ const InventoryTable: React.FC<InventoryTableProps> = ({ Items }) => {
           padding: "2rem",
         }}
       >
-        <div className="flex flex-row-reverse">
+        <div className="flex justify-end items-end">
+          <Input
+            type="text"
+            value={searchValue}
+            className="h-5 p-1 text-xs mr-3"
+            placeholder="Search Item Name"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSearchValue(e.target.value)
+            }
+          />
           <Button
             variant="contained"
             size="small"
@@ -74,10 +98,10 @@ const InventoryTable: React.FC<InventoryTableProps> = ({ Items }) => {
           * Please click on row to view/edit product details
         </p>
         <DataGrid
-          rows={Items}
+          rows={filteredProd}
           columns={columns}
           initialState={{ pagination: { paginationModel } }}
-          pageSizeOptions={[5, 10]}
+          pageSizeOptions={[10, 20, 50]}
           sx={{ border: 0 }}
           rowHeight={30}
           onRowClick={handleRowClick}
