@@ -27,16 +27,19 @@ const Product: React.FC<{ prod: ProductProps; editDetails: boolean }> = ({
 
   const handleSave = () => {
     console.log(createProduct);
+
+    setEdit(false);
   };
 
   const handleEdit = () => {
     setEdit(true);
   };
   return (
-    <Paper elevation={3} sx={{ padding: 3, maxWidth: 600, margin: "auto" }}>
-      <Typography variant="h6" gutterBottom>
+    <>
+      <Typography variant="h6" id="modal-modal-title" gutterBottom>
         {edit ? "Create/Edit Product Details" : "Product Details"}
       </Typography>
+
       <Box>
         <Grid container spacing={2}>
           {ProductDetails.map((d) => {
@@ -98,7 +101,7 @@ const Product: React.FC<{ prod: ProductProps; editDetails: boolean }> = ({
           </Grid>
         </Grid>
       </Box>
-    </Paper>
+    </>
   );
 };
 

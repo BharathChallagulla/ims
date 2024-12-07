@@ -1,4 +1,4 @@
-import { Modal } from "@mui/material";
+import { Modal, Paper, Typography } from "@mui/material";
 
 type ModProps = {
   open: boolean;
@@ -13,12 +13,13 @@ const CustomModal = ({ open, title, children, handleClose }: ModProps) => {
       open={open}
       onClose={handleClose}
       className="overflow-auto"
-      aria-labelledby="modal-title"
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
     >
-      <>
-        <h2 id="modal-title">{title}</h2>
+      <Paper elevation={3} sx={{ padding: 3, maxWidth: 600, margin: "auto" }}>
+        {/* <h2 id="modal-title">{title}</h2> */}
         {children}
-      </>
+      </Paper>
     </Modal>
   );
 };

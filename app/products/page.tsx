@@ -9,9 +9,8 @@ import {
   MuiEvent,
 } from "@mui/x-data-grid";
 import { useState } from "react";
-import CustomModal from "../components/modal";
-import Product from "../components/product";
-
+import CustomModal from "../components/CustomModal";
+import Product from "../components/Product";
 import { EmptyProduct, Items, ProductColumns } from "@/constant";
 import { ProductProps } from "@/types";
 
