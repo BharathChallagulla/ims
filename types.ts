@@ -15,3 +15,9 @@ export type ProductProps = {
   shippingCarrier: string;
   shippingCost: number;
 };
+
+export type ProductDetail = {
+  title: string;
+  key: keyof ProductProps;
+  type: string;
+};

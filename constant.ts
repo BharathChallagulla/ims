@@ -1,3 +1,5 @@
+import { ProductDetail } from "./types";
+
 export const Items = [
   {
     id: 1,
@@ -851,6 +853,24 @@ export const Items = [
   },
 ];
 
+export const EmptyProduct = {
+  id: 0,
+  name: "",
+  quantity: 0,
+  price: 0,
+  category: "",
+  description: "",
+  supplier: "",
+  costPrice: 0,
+  msrp: 0,
+  discount: 0,
+  taxRate: 0,
+  shippingWeight: 0,
+  shippingDimensions: "",
+  shippingCarrier: "",
+  shippingCost: 0,
+};
+
 export const ProductColumns = [
   { field: "id", headerName: "ID", minwidth: 100, resizable: false, flex: 1 },
   {
@@ -881,4 +901,22 @@ export const ProductColumns = [
     resizable: false,
     flex: 1,
   },
+];
+
+export const ProductDetails: ProductDetail[] = [
+  // { title: "ID", key: "id", type: "number" },
+  { title: "Name", key: "name", type: "string" },
+  { title: "Quantity", key: "quantity", type: "number" },
+  { title: "Price", key: "price", type: "number" },
+  { title: "Category", key: "category", type: "string" },
+  { title: "Supplier", key: "supplier", type: "string" },
+  { title: "Cost Price", key: "costPrice", type: "number" },
+  { title: "MSRP", key: "msrp", type: "number" },
+  { title: "Discount", key: "discount", type: "number" },
+  { title: "Tax Rate", key: "taxRate", type: "number" },
+  { title: "Shipping Weight", key: "shippingWeight", type: "number" },
+  { title: "Shipping Dimensions", key: "shippingDimensions", type: "string" },
+  { title: "Shipping Carrier", key: "shippingCarrier", type: "string" },
+  { title: "Shipping Cost", key: "shippingCost", type: "number" },
+  { title: "Description", key: "description", type: "string" },
 ];

@@ -1,5 +1,8 @@
-import Image from "next/image";
+import Dashboard from "./components/Dashboard";
 
-export default function Home() {
-  return <></>;
-}
+import { Items } from "@/constant";
+
+const Home = () => {
+  return <Dashboard products={Items} />;
+};
+export default Home;

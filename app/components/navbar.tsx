@@ -20,10 +20,11 @@ const Navbar = () => {
       <Box className="flex items-center text-center bg-gray-700 h-auto">
         {menuItems.map((item) => {
           return (
-            <Typography className="min-w-100 p-2 text-xs text-white hover:text-bold hover:bg-gray-600">
-              <Link href={item.link} key={item.name}>
-                {item.name}
-              </Link>
+            <Typography
+              className="min-w-100 p-2 text-xs text-white hover:text-bold hover:bg-gray-600"
+              key={item.name}
+            >
+              <Link href={item.link}>{item.name}</Link>
             </Typography>
           );
         })}
