@@ -59,11 +59,13 @@ const InventoryTable: React.FC<InventoryTableProps> = ({ Items }) => {
 
   // search Items with name
   const handleSearch = () => {
-    const newFilteredProducts = filteredProd.filter((prod: ProductProps) => {
+    if (!searchValue) setFilteredProd([...Items]);
+
+    const newFilteredProducts = Items.filter((prod: ProductProps) => {
       return prod.name.toLowerCase().includes(searchValue.toLowerCase());
     });
     setFilteredProd(newFilteredProducts);
-    console.log("Bharath", newFilteredProducts);
+    // console.log("Bharath", newFilteredProducts);
   };
 
   return (
